@@ -1,12 +1,79 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+import { NextApiRequest, NextApiResponse } from "next";
+import prisma from "../../../lib/prisma";
 
-const handler = (_req: NextApiRequest, res: NextApiResponse) => {
-    res.status(200).json({
-         statusCode: 200, 
-         success : true,
-         message: "API is working!"
-        }
-    )
-}
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
-export default handler
+import { env } from "../../../constants/env";
+
+const { JWT_TOKEN } = env;
+
+const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
+  if (_req.method != "GET") {
+    res.status(401).json({
+      success: false,
+    });
+    return;
+  }
+
+  try {
+    const { email, password } = _req.body;
+
+    if (!(email && password)) {
+      res.status(400).json({
+        success: false,
+        error: "Compulsory fields are not filled!",
+      });
+      return;
+    }
+
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+    if (user === null) {
+      res.status(404).json({
+        success: false,
+        message: "User not available",
+      });
+      return;
+    }
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordCorrect) {
+      res.status(402).json({
+        success: false,
+        error: "Password is not Correct",
+      });
+      return;
+    }
+    user.password = undefined;
+
+    const token = jwt.sign(
+      {
+        id: user["id"],
+        name: user["first_name"],
+      },
+      JWT_TOKEN,
+      {
+        expiresIn: "24h",
+      }
+    );
+
+    res.status(201).json({
+      success: true,
+      message: "Credetials Acceepted",
+      token: token,
+      data: user,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+  return;
+};
+
+export default handler;

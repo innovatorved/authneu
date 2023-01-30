@@ -4,7 +4,19 @@
 //
 // import { User } from 'path/to/interfaces';
 
-export type User = {
-  id: number
-  name: string
+import { NextApiResponse } from "next";
+import { CookieSerializeOptions } from "cookie";
+
+export interface NextResponse extends NextApiResponse {
+  cookie(name: string, value: string, options?: CookieSerializeOptions): void;
+}
+
+export interface User {
+  id?: number;
+  first_name: string;
+  last_name?: string;
+  email: string;
+  username: string;
+  createdAt: string;
+  updatedAt: string;
 }
