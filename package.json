@@ -1,4 +1,18 @@
 {
+  "name": "next-img",
+  "version": "0.0.1-dev-a",
+  "description": "Webapp to convert text to image using Deep Learning",
+  "author": "Ved Gupta vedgupta@protonmail.com https://github.com/innovatorved/",
+  "contributors": [{
+    "name": "Ved Prakash Gupta",
+    "email": "vedgupta@protonmail.com",
+    "url": "https://github.com/innovatorved/"
+  }],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/innovatorved/next-img.git"
+  },
+
   "private": true,
   "scripts": {
     "dev": "next",
