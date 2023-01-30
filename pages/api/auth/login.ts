@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 
 import { env } from "../../../constants/env";
 
-const { JWT_TOKEN } = env;
+const { JWT_TOKEN, ACCESS_COOKIE_EXPIRY } = env;
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   if (_req.method != "GET") {
@@ -59,6 +59,13 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
       {
         expiresIn: "24h",
       }
+    );
+
+    res.setHeader(
+      "Set-Cookie",
+      `token=${token}; path=/; expires=${new Date(
+        Date.now() + ACCESS_COOKIE_EXPIRY
+      ).toUTCString()}`
     );
 
     res.status(201).json({
