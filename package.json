@@ -3,16 +3,17 @@
   "version": "0.0.1-dev-a",
   "description": "Webapp to convert text to image using Deep Learning",
   "author": "Ved Gupta vedgupta@protonmail.com https://github.com/innovatorved/",
-  "contributors": [{
-    "name": "Ved Prakash Gupta",
-    "email": "vedgupta@protonmail.com",
-    "url": "https://github.com/innovatorved/"
-  }],
+  "contributors": [
+    {
+      "name": "Ved Prakash Gupta",
+      "email": "vedgupta@protonmail.com",
+      "url": "https://github.com/innovatorved/"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/innovatorved/next-img.git"
   },
-
   "private": true,
   "scripts": {
     "dev": "next",
@@ -21,6 +22,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@prisma/client": "4.9.0",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -32,6 +34,7 @@
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",
     "postcss-preset-env": "^8.0.1",
+    "prisma": "^4.9.0",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.8.3"
   }
