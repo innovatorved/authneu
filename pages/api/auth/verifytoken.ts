@@ -16,15 +16,34 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
-    const { token } = _req.body;
+    const { token } = _req.headers;
     const data = jwt.verify(token, JWT_KEY);
     if (data) {
-      res.status(201).json({
+      const user = await prisma.user.findUnique({
+        where: {
+          id: data.id,
+        },
+        select: {
+          first_name: true,
+          last_name: true,
+          email: true,
+          username: true,
+        },
+      });
+      if (user === null) {
+        res.status(400).json({
+          success: false,
+          message: "User not available",
+        });
+        return;
+      }
+
+      res.status(202).json({
         success: true,
-        message: data,
+        data: user,
       });
     } else {
-      res.status(201).json({
+      res.status(400).json({
         success: false,
         message: "Not find",
       });
