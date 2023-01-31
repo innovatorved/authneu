@@ -21,7 +21,7 @@ const Layout = ({ children, title = "This is the default title" }: Props) => {
       <header>
         <Header />
       </header>
-      {children}
+      <div className="min-h-[30rem]">{children}</div>
       <footer>
         <Footer />
       </footer>

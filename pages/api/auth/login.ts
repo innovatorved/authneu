@@ -4,9 +4,9 @@ import prisma from "../../../lib/prisma";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-import { env } from "../../../constants/env";
+import { env } from "../../../environments/index";
 
-const { JWT_TOKEN, ACCESS_COOKIE_EXPIRY } = env;
+const { JWT_KEY, ACCESS_COOKIE_EXPIRY } = env;
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   if (_req.method != "GET") {
@@ -55,7 +55,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
         id: user["id"],
         name: user["first_name"],
       },
-      JWT_TOKEN,
+      JWT_KEY,
       {
         expiresIn: "24h",
       }

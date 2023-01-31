@@ -3,9 +3,9 @@ import prisma from "../../../lib/prisma";
 
 import jwt from "jsonwebtoken";
 
-import { env } from "../../../constants/env";
+import { env } from "../../../environments/index";
 
-const { JWT_TOKEN } = env;
+const { JWT_KEY } = env;
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   if (_req.method != "GET") {
@@ -17,7 +17,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const { token } = _req.body;
-    const data = jwt.verify(token, JWT_TOKEN);
+    const data = jwt.verify(token, JWT_KEY);
     if (data) {
       res.status(201).json({
         success: true,

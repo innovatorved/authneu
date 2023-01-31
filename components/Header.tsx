@@ -6,7 +6,10 @@ import Image from "next/image";
 import { MenuBarSVG } from "../assets/SVG/image";
 import NextImgLogo from "../assets/images/logo-bg-64.png";
 
+import { APP_INFO } from "../environments/index";
+
 export default function Header() {
+  const { TITLE } = APP_INFO;
   const [toggle, setToggle] = useState(false);
   {
     /* 
@@ -27,9 +30,9 @@ export default function Header() {
               src={NextImgLogo}
               height={35}
               width={35}
-              alt="Logo | NextImg"
+              alt={`Logo | ${TITLE}`}
             />
-            NextImg
+            {TITLE}
           </Link>
           <button
             className="border border-solid border-secondary-300 px-3 py-1 rounded text-secondary-300 opacity-50 hover:opacity-75 md:hidden"
@@ -49,19 +52,13 @@ export default function Header() {
           id="navbar-collapse"
         >
           <Link
-            href="#"
+            href="/about"
             className="p-2 lg:px-4 md:mx-2 text-secondary-300 font-primary rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300"
           >
             About
           </Link>
           <Link
-            href="#"
-            className="p-2 lg:px-4 md:mx-2 text-secondary-300 font-primary rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300"
-          >
-            Pricing
-          </Link>
-          <Link
-            href="#"
+            href="/contact"
             className="p-2 lg:px-4 md:mx-2 text-secondary-300 font-primary rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300"
           >
             Contact

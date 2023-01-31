@@ -4,8 +4,11 @@ import Layout from "../components/Layout";
 import { useState, useRef } from "react";
 
 import { LockSVG, ColoredLock, CrossSVG } from "../assets/SVG/image";
+import { APP_INFO } from "../environments/index";
 
 const Login = () => {
+  const { TITLE } = APP_INFO;
+
   const [username_check, setUsername_check] = useState(false);
   const [pass, setPass] = useState({
     password: "",
@@ -24,14 +27,14 @@ const Login = () => {
   const username_ref = useRef();
 
   return (
-    <Layout title="Join us | NextImg">
+    <Layout title={`Join us | ${TITLE}`}>
       <div className="flex items-center justify-center py-10">
         <div className="xl:w-10/12 w-full px-8">
           <div className="xl:px-24">
             <div>
               <h2 className="mt-6 text-center text-xl md:text-3xl font-extrabold text-secondary-300 font-primary">
                 Create your account{" "}
-                <span className="text-primary-100">NextImg</span>
+                <span className="text-primary-100">{TITLE}</span>
               </h2>
             </div>
             <div className="px-5 py-4 bg-gray-100 rounded-lg flex items-center justify-between mt-7">

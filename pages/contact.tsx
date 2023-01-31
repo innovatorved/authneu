@@ -1,19 +1,17 @@
-import Link from "next/link";
+import React from "react";
 import Layout from "../components/Layout";
 
 import { APP_INFO } from "../environments/index";
 
-const IndexPage = () => {
+export default function contact() {
   const { TITLE } = APP_INFO;
   return (
     <Layout title={`Contact | ${TITLE}`}>
-      <main className="flex justify-center mt-8 font-primary">
+      <main className="flex justify-center mt-8 ">
         <h1 className="font-primary hover:underline text-secondary-300">
-          Hello Next.js 👋
+          Contact
         </h1>
       </main>
     </Layout>
   );
-};
-
-export default IndexPage;
+}
