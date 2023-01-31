@@ -223,7 +223,7 @@ const Login = () => {
                     </span>
                     <button
                       type="button"
-                      className="text-sm font-medium rounded-md text-primary-100 hover:text-primary-300 focus:outline-none"
+                      className="text-sm font-medium rounded-md text-primary-100 hover:text-primary-300 focus:outline-none hover:underline"
                     >
                       SignIn
                     </button>

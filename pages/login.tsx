@@ -5,7 +5,7 @@ import { LockSVG, ColoredLock, CrossSVG } from "../assets/SVG/image";
 
 const Login = () => (
   <Layout title="Login | NextImg">
-    <div className="min-h-full flex items-center justify-center py-10  px-4 sm:px-6 lg:px-8">
+    <div className="min-h-full flex items-center justify-center py-10 mb-20  px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-xl md:text-3xl font-bold text-secondary-300 font-primary">
@@ -97,7 +97,7 @@ const Login = () => (
                 </span>
                 <button
                   type="button"
-                  className="text-sm font-medium rounded-md text-primary-100 hover:text-primary-300 focus:outline-none"
+                  className="text-sm font-medium rounded-md text-primary-100 hover:text-primary-300 focus:outline-none hover:underline"
                 >
                   Sign Up
                 </button>
