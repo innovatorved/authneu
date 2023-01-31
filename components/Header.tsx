@@ -16,7 +16,7 @@ export default function Header() {
   }
   return (
     <nav className="py-2 md:py-4 bg-gray-100">
-      <div className="container px-4 mx-auto md:flex md:items-center">
+      <div className="container px-4 mx-auto md:flex md:items-center md:py-0 py-2">
         <div className="flex justify-between items-center">
           <Link
             href="/"
