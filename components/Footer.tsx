@@ -99,7 +99,7 @@ export default function Footer() {
       </div>
       <div className="px-4 pb-4 bg-gray-100 md:flex md:items-center md:justify-between">
         <span className="text-sm text-secondary-300 sm:text-center">
-          © 2023 <Link href={WEBSITE_LINK}>{TITLE}</Link>. All Rights Reserved.
+          © 2023 <a href={WEBSITE_LINK}>{TITLE}</a>. All Rights Reserved.
         </span>
         <div className="flex mt-4 space-x-6 sm:justify-center md:mt-0">
           <a
