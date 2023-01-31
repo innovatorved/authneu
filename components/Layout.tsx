@@ -3,6 +3,7 @@ import Link from "next/link";
 import Head from "next/head";
 
 import Header from "./Header";
+import Footer from "./Footer";
 
 type Props = {
   children?: ReactNode;
@@ -11,7 +12,7 @@ type Props = {
 
 const Layout = ({ children, title = "This is the default title" }: Props) => {
   return (
-    <div>
+    <div className="flex flex-col h-screen justify-between">
       <Head>
         <title>{title}</title>
         <meta charSet="utf-8" />
@@ -22,8 +23,7 @@ const Layout = ({ children, title = "This is the default title" }: Props) => {
       </header>
       {children}
       <footer>
-        <hr />
-        <span>I'm here to stay (Footer)</span>
+        <Footer />
       </footer>
     </div>
   );

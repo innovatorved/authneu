@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+
 import Link from "next/link";
+import Image from "next/image";
 
 import { MenuBarSVG } from "../assets/SVG/image";
+import NextImgLogo from "../assets/images/logo-bg-64.png";
 
 export default function Header() {
   const [toggle, setToggle] = useState(false);
@@ -16,9 +19,16 @@ export default function Header() {
       <div className="container px-4 mx-auto md:flex md:items-center">
         <div className="flex justify-between items-center">
           <Link
-            href="#"
-            className="font-bold text-xl text-primary-300 font-primary"
+            href="/"
+            className="font-bold text-xl text-primary-300 font-primary flex items-center"
           >
+            <Image
+              className="pr-2"
+              src={NextImgLogo}
+              height={35}
+              width={35}
+              alt="Logo | NextImg"
+            />
             NextImg
           </Link>
           <button
