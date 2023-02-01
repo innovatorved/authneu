@@ -21,7 +21,7 @@ const loginUserAPI = async (body) => {
   try {
     data = await post("/auth/login", body);
   } catch (e) {
-    if (e.response.status === 400) {
+    if (e?.response?.status === 400) {
       err = e.json;
     }
   }

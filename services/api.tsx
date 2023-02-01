@@ -19,7 +19,7 @@ async function handleResponse(p_response) {
     const error: any = new Error("App Created Error");
     error.response = p_response;
     error.json = json;
-    error.status = p_response.status;
+    error.status = p_response?.status;
     throw error;
   }
 }

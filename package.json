@@ -28,7 +28,8 @@
     "jsonwebtoken": "^9.0.0",
     "next": "latest",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-toastify": "^9.1.1"
   },
   "devDependencies": {
     "@types/cookie": "^0.5.1",

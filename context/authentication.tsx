@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { getToken, removeToken, setToken } from "../helpers/index";
 import { User } from "../interfaces/index";
 
+import notify from "../helpers/notify";
+
 import {
   getUserDetailsAPI,
   createUserAPI,
@@ -17,6 +19,7 @@ const AuthState = (props) => {
   const [isAuthenticated, setIsAuthenticated] = useState<Boolean>(null);
   const router = useRouter();
   const [loading, setLoading] = useState<Boolean>(true);
+
   const [userInfo, setUserInfo] = useState<User>({
     id: "",
     first_name: "",
@@ -37,19 +40,23 @@ const AuthState = (props) => {
       setIsAuthenticated(true);
       setUserInfo(data?.data);
       setToken(data?.token);
+      notify.success("Succesfully Login");
       router.push("/");
     } else if (err) {
       console.log(err?.message);
+      notify.error(err?.message);
     }
   };
 
   const CreateAccount = async (body) => {
     const [data, err] = await createUserAPI(body);
     if (data?.success === true) {
-      console.log("Account Created");
+      console.log("Account Created Succesfully!");
       router.push("/login");
+      notify.success("Account Created Succesfully!");
     } else if (err) {
       console.log(err?.message);
+      notify.error(err?.message);
     }
   };
 
@@ -65,6 +72,7 @@ const AuthState = (props) => {
       setUserInfo(data?.data);
     } else if (err) {
       console.log(err?.message);
+      notify.error(err?.message);
       LogoutUser();
     }
   };
@@ -79,6 +87,7 @@ const AuthState = (props) => {
     });
     removeToken();
     setIsAuthenticated(false);
+    notify.error("Logout User!");
   };
 
   return (
