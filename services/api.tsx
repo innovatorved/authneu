@@ -16,7 +16,7 @@ async function handleResponse(p_response) {
     try {
       json = await p_response.json();
     } catch {}
-    const error: any = new Error();
+    const error: any = new Error("App Created Error");
     error.response = p_response;
     error.json = json;
     error.status = p_response.status;

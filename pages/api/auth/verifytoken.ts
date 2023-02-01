@@ -24,6 +24,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
           id: data.id,
         },
         select: {
+          id: true,
           first_name: true,
           last_name: true,
           email: true,
@@ -31,7 +32,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
         },
       });
       if (user === null) {
-        res.status(400).json({
+        res.status(401).json({
           success: false,
           message: "User not available",
         });
@@ -43,13 +44,13 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
         data: user,
       });
     } else {
-      res.status(400).json({
+      res.status(401).json({
         success: false,
         message: "Not find",
       });
     }
   } catch (error) {
-    res.status(400).json({
+    res.status(401).json({
       success: false,
       message: error.message,
     });

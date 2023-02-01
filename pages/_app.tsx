@@ -1,10 +1,16 @@
-import React from 'react'
-import { AppProps } from 'next/app'
+import React from "react";
+import { AppProps } from "next/app";
 
-import '../styles/index.css'
+import AuthState from "../context/authentication";
+
+import "../styles/index.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <AuthState>
+      <Component {...pageProps} />
+    </AuthState>
+  );
 }
 
 export default MyApp;

@@ -1,15 +1,31 @@
-import Link from "next/link";
 import Layout from "../components/Layout";
+
+import { useRouter } from "next/router";
+
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../context/authentication";
 
 import { APP_INFO } from "../environments/index";
 
 const IndexPage = () => {
+  const { isAuthenticated, LogoutUser } = useContext(AuthContext);
   const { TITLE } = APP_INFO;
+  const router = useRouter();
+
+  useEffect(() => {}, [1]);
+
+  useEffect(() => {
+    if (isAuthenticated === false) {
+      LogoutUser();
+      // router.push("/login");
+    }
+  }, [isAuthenticated]);
+
   return (
-    <Layout title={`Contact | ${TITLE}`}>
+    <Layout title={`Dashboard | ${TITLE}`}>
       <main className="flex justify-center mt-8 font-primary">
         <h1 className="font-primary hover:underline text-secondary-300">
-          Hello Next.js 👋
+          {isAuthenticated ? "Hello Next.js 👋" : "Unauthorished!"}
         </h1>
       </main>
     </Layout>

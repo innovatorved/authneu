@@ -1,5 +1,11 @@
-const getToken = () => {
+export const getToken = () => {
   return localStorage.getItem("token");
 };
 
-export { getToken };
+export const removeToken = () => {
+  localStorage.removeItem("token");
+};
+
+export const sleep = (time) => {
+  return new Promise((resolve) => setTimeout(resolve, time));
+};

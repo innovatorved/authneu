@@ -5,8 +5,8 @@ export const MenuBarSVG = () => {
       version="1.1"
       className="h-5 w-5 text-primary-300"
       xmlns="http://www.w3.org/2000/svg"
-      width="1.25rem"
-      height="1.25rem"
+      // width="1.25rem"
+      // height="1.25rem"
       viewBox="0 0 92.833 92.833"
     >
       <g>

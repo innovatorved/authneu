@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Layout from "../components/Layout";
+import { StaticLayout } from "../components/Layout";
 
 import { LockSVG, ColoredLock, CrossSVG } from "../assets/SVG/image";
 
@@ -8,7 +8,7 @@ import { APP_INFO } from "../environments/index";
 const Login = () => {
   const { TITLE } = APP_INFO;
   return (
-    <Layout title={`Login | ${TITLE}`}>
+    <StaticLayout title={`Login | ${TITLE}`}>
       <div className="min-h-full flex items-center justify-center py-10 mb-20  px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
@@ -111,7 +111,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-    </Layout>
+    </StaticLayout>
   );
 };
 

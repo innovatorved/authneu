@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Layout from "../components/Layout";
+import { StaticLayout } from "../components/Layout";
 
 import { useState, useRef } from "react";
 
@@ -27,7 +27,7 @@ const Login = () => {
   const username_ref = useRef();
 
   return (
-    <Layout title={`Join us | ${TITLE}`}>
+    <StaticLayout title={`Join us | ${TITLE}`}>
       <div className="flex items-center justify-center py-10">
         <div className="xl:w-10/12 w-full px-8">
           <div className="xl:px-24">
@@ -261,7 +261,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </StaticLayout>
   );
 };
 

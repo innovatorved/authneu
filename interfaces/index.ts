@@ -1,9 +1,14 @@
+import { ReactNode } from "react";
+
 export interface User {
-  id?: number;
+  id?: string;
   first_name: string;
   last_name?: string;
   email: string;
   username: string;
-  createdAt: string;
-  updatedAt: string;
 }
+
+export type LayoutProps = {
+  children?: ReactNode;
+  title?: string;
+};
