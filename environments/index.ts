@@ -19,4 +19,4 @@ export const SOCIAL_URL = {
 };
 
 export const WEBSITE_LINK = "http://localhost:3000";
-export const API_HOST = "http://localhost:3000/api";
+export const API_HOST = "/api";
