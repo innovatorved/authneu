@@ -7,6 +7,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   if (_req.method != "POST") {
     res.status(405).json({
       success: false,
+      message: "Invalid Method",
     });
     return;
   }

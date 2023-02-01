@@ -9,9 +9,10 @@ import { env } from "../../../environments/index";
 const { JWT_KEY, ACCESS_COOKIE_EXPIRY } = env;
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
-  if (_req.method != "GET") {
-    res.status(401).json({
+  if (_req.method != "POST") {
+    res.status(405).json({
       success: false,
+      message: "Invalid Method",
     });
     return;
   }

@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { StaticLayout } from "../components/Layout";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 
 import { LockSVG, ColoredLock, CrossSVG } from "../assets/SVG/image";
 import { APP_INFO } from "../environments/index";
+import { AuthContext } from "../context/authentication";
 
 const Login = () => {
   const { TITLE } = APP_INFO;
+  const { CreateAccount } = useContext(AuthContext);
 
   const [username_check, setUsername_check] = useState(false);
   const [pass, setPass] = useState({
@@ -21,10 +23,34 @@ const Login = () => {
     });
   };
 
-  const first_ref = useRef();
-  const last_ref = useRef();
-  const email_ref = useRef();
-  const username_ref = useRef();
+  const first_ref = useRef<HTMLInputElement>(null);
+  const last_ref = useRef<HTMLInputElement>(null);
+  const email_ref = useRef<HTMLInputElement>(null);
+  const username_ref = useRef<HTMLInputElement>(null);
+
+  const Submit = (e) => {
+    e.preventDefault();
+    if (
+      !(
+        first_ref!.current.value &&
+        last_ref!.current.value &&
+        email_ref!.current.value &&
+        username_ref!.current.value &&
+        pass.password
+      )
+    ) {
+      console.log("Fill All values");
+      return;
+    }
+    const body = {
+      first_name: first_ref!.current.value,
+      last_name: last_ref!.current.value,
+      email: email_ref!.current.value,
+      username: username_ref!.current.value,
+      password: pass?.password,
+    };
+    CreateAccount(body);
+  };
 
   return (
     <StaticLayout title={`Join us | ${TITLE}`}>
@@ -52,7 +78,7 @@ const Login = () => {
                 <CrossSVG />
               </button>
             </div>
-            <form>
+            <form onSubmit={Submit}>
               <div className="mt-16 lg:flex justify-between border-b border-gray-200 pb-16">
                 <div className="w-80">
                   <div className="flex items-center">

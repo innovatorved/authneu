@@ -4,9 +4,30 @@ import { StaticLayout } from "../components/Layout";
 import { LockSVG, ColoredLock, CrossSVG } from "../assets/SVG/image";
 
 import { APP_INFO } from "../environments/index";
+import { useContext, useRef } from "react";
+import { AuthContext } from "../context/authentication";
 
 const Login = () => {
   const { TITLE } = APP_INFO;
+
+  const email_ref = useRef<HTMLInputElement>(null);
+  const pass_ref = useRef<HTMLInputElement>(null);
+
+  const { LoginToAccount } = useContext(AuthContext);
+
+  const Submit = (e) => {
+    e.preventDefault();
+    if (!(email_ref!.current.value && pass_ref!.current.value)) {
+      console.log("Fill All values");
+      return;
+    }
+    const body = {
+      email: email_ref!.current.value,
+      password: pass_ref!.current.value,
+    };
+    LoginToAccount(body);
+  };
+
   return (
     <StaticLayout title={`Login | ${TITLE}`}>
       <div className="min-h-full flex items-center justify-center py-10 mb-20  px-4 sm:px-6 lg:px-8">
@@ -34,7 +55,7 @@ const Login = () => {
             </button>
           </div>
 
-          <form className="mt-8 space-y-6">
+          <form className="mt-8 space-y-6" onSubmit={Submit}>
             <input type="hidden" name="remember" value="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
@@ -45,6 +66,7 @@ const Login = () => {
                   id="email-address"
                   name="email"
                   type="email"
+                  ref={email_ref}
                   autoComplete="email"
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-secondary-300 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -59,6 +81,7 @@ const Login = () => {
                   id="password"
                   name="password"
                   type="password"
+                  ref={pass_ref}
                   autoComplete="current-password"
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-secondary-300 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"

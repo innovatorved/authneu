@@ -2,11 +2,14 @@ import { createContext, useState, useEffect } from "react";
 
 import { useRouter } from "next/router";
 
-import { api } from "../services/api";
-import { getToken, removeToken } from "../helpers/index";
+import { getToken, removeToken, setToken } from "../helpers/index";
 import { User } from "../interfaces/index";
 
-import { getUserDetails } from "../services/call";
+import {
+  getUserDetailsAPI,
+  createUserAPI,
+  loginUserAPI,
+} from "../services/call";
 
 const AuthContext = createContext(null);
 
@@ -27,12 +30,35 @@ const AuthState = (props) => {
     setLoading(false);
   }, [1]);
 
+  const LoginToAccount = async (body) => {
+    const [data, err] = await loginUserAPI(body);
+    if (data?.success === true) {
+      console.log("Succesfully Login");
+      setIsAuthenticated(true);
+      setUserInfo(data?.data);
+      setToken(data?.token);
+      router.push("/");
+    } else if (err) {
+      console.log(err?.message);
+    }
+  };
+
+  const CreateAccount = async (body) => {
+    const [data, err] = await createUserAPI(body);
+    if (data?.success === true) {
+      console.log("Account Created");
+      router.push("/login");
+    } else if (err) {
+      console.log(err?.message);
+    }
+  };
+
   const VerifyUser = async () => {
     if (!getToken()) {
       setIsAuthenticated(false);
       return;
     }
-    const [data, err] = await getUserDetails();
+    const [data, err] = await getUserDetailsAPI();
     if (data?.success === true) {
       setIsAuthenticated(true);
       console.log(data.data);
@@ -64,6 +90,8 @@ const AuthState = (props) => {
         isAuthenticated,
         setUserInfo,
         VerifyUser,
+        LoginToAccount,
+        CreateAccount,
         LogoutUser,
       }}
     >
