@@ -6,6 +6,8 @@ import { api } from "../services/api";
 import { getToken, removeToken } from "../helpers/index";
 import { User } from "../interfaces/index";
 
+import { getUserDetails } from "../services/call";
+
 const AuthContext = createContext(null);
 
 const AuthState = (props) => {
@@ -25,28 +27,22 @@ const AuthState = (props) => {
     setLoading(false);
   }, [1]);
 
-  const { jwtGet } = api;
-
-  const VerifyUser = () => {
-    if (getToken()) {
-      jwtGet("/auth/verifytoken")
-        .then(async (res) => {
-          if (res?.success === true) {
-            console.log(res.data);
-            setUserInfo(res?.data);
-            setIsAuthenticated(true);
-          }
-        })
-        .catch((e) => {
-          if (e.response.status === 401) {
-            console.log(e.json?.message);
-            LogoutUser();
-          }
-        });
-    } else {
+  const VerifyUser = async () => {
+    if (!getToken()) {
       setIsAuthenticated(false);
+      return;
+    }
+    const [data, err] = await getUserDetails();
+    if (data?.success === true) {
+      setIsAuthenticated(true);
+      console.log(data.data);
+      setUserInfo(data?.data);
+    } else if (err) {
+      console.log(err?.message);
+      LogoutUser();
     }
   };
+
   const LogoutUser = () => {
     setUserInfo({
       id: "",

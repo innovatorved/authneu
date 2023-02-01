@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function Loading() {
-  return <div>Loading...</div>;
+  return <div className="min-h-[30rem] font-primary"> Loading...</div>;
 }

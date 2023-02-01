@@ -17,7 +17,6 @@ const IndexPage = () => {
   useEffect(() => {
     if (isAuthenticated === false) {
       LogoutUser();
-      // router.push("/login");
     }
   }, [isAuthenticated]);
 
@@ -25,7 +24,7 @@ const IndexPage = () => {
     <Layout title={`Dashboard | ${TITLE}`}>
       <main className="flex justify-center mt-8 font-primary">
         <h1 className="font-primary hover:underline text-secondary-300">
-          {isAuthenticated ? "Hello Next.js 👋" : "Unauthorished!"}
+          {isAuthenticated === true ? "Hello Next.js 👋" : "Unauthorished!"}
         </h1>
       </main>
     </Layout>

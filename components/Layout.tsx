@@ -16,7 +16,7 @@ const Layout = ({
   title = "This is the default title",
 }: LayoutProps) => {
   const router = useRouter();
-  const { loading } = useContext(AuthContext);
+  const { loading, isAuthenticated } = useContext(AuthContext);
 
   return (
     <>
@@ -28,7 +28,11 @@ const Layout = ({
       <header>
         <Header />
       </header>
-      {loading ? <Loading /> : <div className="min-h-[30rem]">{children}</div>}
+      {loading === true || isAuthenticated === null ? (
+        <Loading />
+      ) : (
+        <div className="min-h-[30rem]">{children}</div>
+      )}
       <footer>
         <Footer />
       </footer>
