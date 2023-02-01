@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { MenuBarSVG } from "../assets/SVG/image";
-import NextImgLogo from "../assets/images/logo-bg-64.png";
+import NextImgLogo from "../assets/images/lock-dark-64.png";
 
 import { APP_INFO } from "../environments/index";
 
