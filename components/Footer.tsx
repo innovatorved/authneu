@@ -85,9 +85,14 @@ export default function Footer() {
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="#" className="hover:underline text-xs">
+              <a
+                href="https://github.com/innovatorved/AuthNew/blob/main/LICENSE"
+                className="hover:underline text-xs"
+                target="_blank"
+                rel="noreferrer"
+              >
                 Licensing
-              </Link>
+              </a>
             </li>
             <li className="mb-2">
               <Link href="#" className="hover:underline text-xs">

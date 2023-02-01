@@ -5,7 +5,8 @@ export const env = {
 
 export const APP_INFO = {
   TITLE: "NextImg",
-  DESCRIPTION: "",
+  DESCRIPTION:
+    "NextJs | Prisma | MongoDB based ready to use Authentication Template",
 };
 
 export const SOCIAL_URL = {
