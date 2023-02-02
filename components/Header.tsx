@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -7,10 +7,14 @@ import { MenuBarSVG } from "../assets/SVG/image";
 import NextImgLogo from "../assets/images/lock-dark-64.png";
 
 import { APP_INFO } from "../environments/index";
+import { AuthContext } from "../context/authentication";
+
+import notify from "../helpers/notify";
 
 export default function Header() {
   const { TITLE } = APP_INFO;
   const [toggle, setToggle] = useState(false);
+  const { isAuthenticated, LogoutUser } = useContext(AuthContext);
   {
     /* 
             p-2 lg:px-4 md:mx-2 text-white font-primary rounded bg-primary-300
@@ -63,18 +67,32 @@ export default function Header() {
           >
             Contact
           </Link>
-          <Link
-            href="/login"
-            className="p-2 lg:px-4 md:mx-2 text-primary-300 font-primary text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300"
-          >
-            Login
-          </Link>
-          <Link
-            href="/signup"
-            className="p-2 lg:px-4 md:mx-2 text-primary-300 font-primary text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300"
-          >
-            Signup
-          </Link>
+          {isAuthenticated ? (
+            <button
+              onClick={() => {
+                LogoutUser();
+                notify.error("Logout User!");
+              }}
+              className="p-2 lg:px-4 md:mx-2 text-primary-300 font-primary text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300"
+            >
+              Logout
+            </button>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="p-2 lg:px-4 md:mx-2 text-primary-300 font-primary text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300"
+              >
+                Login
+              </Link>
+              <Link
+                href="/signup"
+                className="p-2 lg:px-4 md:mx-2 text-primary-300 font-primary text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300"
+              >
+                Signup
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>

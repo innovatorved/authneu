@@ -7,8 +7,8 @@ const getUserDetailsAPI = async () => {
   try {
     data = await jwtGet("/auth/verifytoken");
   } catch (e) {
-    if (e.response.status === 401) {
-      err = e.json;
+    if (e.response?.status === 401) {
+      err = e?.json;
     }
   }
   return [data, err];
@@ -22,7 +22,7 @@ const loginUserAPI = async (body) => {
     data = await post("/auth/login", body);
   } catch (e) {
     if (e?.response?.status === 400) {
-      err = e.json;
+      err = e?.json;
     }
   }
 
@@ -35,8 +35,8 @@ const createUserAPI = async (body) => {
   try {
     data = await post("/auth/signup", body);
   } catch (e) {
-    if (e.response.status === 400) {
-      err = e.json;
+    if (e?.response?.status === 400) {
+      err = e?.json;
     }
   }
   return [data, err];

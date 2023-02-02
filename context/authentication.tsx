@@ -29,6 +29,12 @@ const AuthState = (props) => {
   });
 
   useEffect(() => {
+    if (isAuthenticated === false) {
+      LogoutUser();
+    }
+  }, [isAuthenticated]);
+
+  useEffect(() => {
     VerifyUser();
     setLoading(false);
   }, [1]);
@@ -78,6 +84,7 @@ const AuthState = (props) => {
   };
 
   const LogoutUser = () => {
+    setIsAuthenticated(false);
     setUserInfo({
       id: "",
       first_name: "",
@@ -86,8 +93,6 @@ const AuthState = (props) => {
       username: "",
     });
     removeToken();
-    setIsAuthenticated(false);
-    notify.error("Logout User!");
   };
 
   return (
