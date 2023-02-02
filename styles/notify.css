@@ -9,4 +9,9 @@
 .Toastify__toast-body {
     color: #22333b !important;
     font-family: Arima Madurai, 'cursive';
+    background-color: white !important;
+}
+
+.Toastify__toast {
+    background-color: white !important;
 }
