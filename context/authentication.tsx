@@ -102,6 +102,7 @@ const AuthState = (props) => {
   return (
     <AuthContext.Provider
       value={{
+        router,
         userInfo,
         loading,
         setLoading,

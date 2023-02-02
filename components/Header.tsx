@@ -14,7 +14,7 @@ import notify from "../helpers/notify";
 export default function Header() {
   const { TITLE } = APP_INFO;
   const [toggle, setToggle] = useState(false);
-  const { isAuthenticated, LogoutUser } = useContext(AuthContext);
+  const { isAuthenticated, LogoutUser, router } = useContext(AuthContext);
 
   return (
     <nav className="py-2 md:py-4 bg-gray-100">
@@ -54,13 +54,17 @@ export default function Header() {
         >
           <Link
             href="/about"
-            className="p-2 lg:px-4 md:mx-2 text-secondary-300 font-primary rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300"
+            className={`${
+              router.pathname === "/about" ? "underline" : ""
+            } p-2 lg:px-4 md:mx-2 text-secondary-300 font-primary rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300`}
           >
             About
           </Link>
           <Link
             href="/contact"
-            className="p-2 lg:px-4 md:mx-2 text-secondary-300 font-primary rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300"
+            className={`${
+              router.pathname === "/contact" ? "underline" : ""
+            } p-2 lg:px-4 md:mx-2 text-secondary-300 font-primary rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300`}
           >
             Contact
           </Link>
@@ -78,13 +82,17 @@ export default function Header() {
             <>
               <Link
                 href="/login"
-                className="p-2 lg:px-4 md:mx-2 text-primary-300 font-primary text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300"
+                className={`${
+                  router.pathname === "/login" ? "underline" : ""
+                } p-2 lg:px-4 md:mx-2 text-primary-300 font-primary text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300`}
               >
                 Login
               </Link>
               <Link
                 href="/signup"
-                className="p-2 lg:px-4 md:mx-2 text-primary-300 font-primary text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300"
+                className={`${
+                  router.pathname === "/signup" ? "underline" : ""
+                } p-2 lg:px-4 md:mx-2 text-primary-300 font-primary text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300`}
               >
                 Signup
               </Link>
