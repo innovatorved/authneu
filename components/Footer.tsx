@@ -2,9 +2,12 @@ import React from "react";
 import Link from "next/link";
 
 import { SOCIAL_URL, WEBSITE_LINK, APP_INFO } from "../environments/index";
+import Image from "next/image";
+
+import LockPrimaryImg from "../assets/images/lock-primary-100.png";
 
 export default function Footer() {
-  const { TITLE } = APP_INFO;
+  const { TITLE, DESCRIPTION } = APP_INFO;
   const { GITHUB_URL, INSTA_URL, FB_URL, TWITTER_URL, DISCORD_SERVER } =
     SOCIAL_URL;
   return (
@@ -100,6 +103,25 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
+        </div>
+        <div className="flex md:justify-center items-center ">
+          <div>
+            <div className="sm:flex sm:items-center">
+              <div className="max-w-[40px] sm:max-w-[70px]">
+                <Image
+                  src={LockPrimaryImg}
+                  className="cursor-pointer"
+                  width={70}
+                  height={70}
+                  alt="lock image"
+                />
+              </div>
+              <div className="font-primary text-secondary-300 hover:underline">
+                {TITLE}
+              </div>
+            </div>
+            <span className="text-xs text-secondary-300">{DESCRIPTION}</span>
+          </div>
         </div>
       </div>
       <div className="px-4 pb-4 bg-gray-100 md:flex md:items-center md:justify-between">

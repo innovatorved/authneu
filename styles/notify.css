@@ -1,17 +1,17 @@
 .Toastify__progress-bar {
-    background-color: #014f86 !important;
+  background-color: #014f86 !important;
 }
 
 .Toastify__toast-icon svg {
-    fill: #014f86 !important
+  fill: #014f86 !important;
 }
 
 .Toastify__toast-body {
-    color: #22333b !important;
-    font-family: Arima Madurai, 'cursive';
-    background-color: white !important;
+  color: #22333b !important;
+  font-family: Arima Madurai, "cursive";
+  background-color: white !important;
 }
 
 .Toastify__toast {
-    background-color: white !important;
+  background-color: white !important;
 }
