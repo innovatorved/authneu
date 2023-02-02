@@ -1,10 +1,15 @@
 import Link from "next/link";
 import { StaticLayout } from "../components/Layout";
 
-import { LockSVG, ColoredLock, CrossSVG } from "../assets/SVG/image";
+import {
+  LockSVG,
+  ColoredLock,
+  CrossSVG,
+  ProcessCircle,
+} from "../assets/SVG/image";
 
 import { APP_INFO } from "../environments/index";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../context/authentication";
 
 const Login = () => {
@@ -14,9 +19,11 @@ const Login = () => {
   const pass_ref = useRef<HTMLInputElement>(null);
 
   const { LoginToAccount } = useContext(AuthContext);
+  const [process, setProcess] = useState<Boolean>(false);
 
   const Submit = (e) => {
     e.preventDefault();
+    setProcess(true);
     if (!(email_ref!.current.value && pass_ref!.current.value)) {
       console.log("Fill All values");
       return;
@@ -25,7 +32,10 @@ const Login = () => {
       email: email_ref!.current.value,
       password: pass_ref!.current.value,
     };
-    LoginToAccount(body);
+    const err = LoginToAccount(body);
+    if (err) {
+      // setProcess(false);
+    }
   };
 
   return (
@@ -111,9 +121,10 @@ const Login = () => {
               <button
                 type="submit"
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-100 hover:bg-primary-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                disabled={process ? true : false}
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3 font-primary">
-                  <LockSVG />
+                  {process === false ? <LockSVG /> : <ProcessCircle />}
                 </span>
                 Sign in
               </button>

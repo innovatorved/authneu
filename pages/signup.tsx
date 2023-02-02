@@ -3,7 +3,12 @@ import { StaticLayout } from "../components/Layout";
 
 import { useState, useRef, useContext } from "react";
 
-import { LockSVG, ColoredLock, CrossSVG } from "../assets/SVG/image";
+import {
+  LockSVG,
+  ColoredLock,
+  CrossSVG,
+  ProcessCircle,
+} from "../assets/SVG/image";
 import { APP_INFO } from "../environments/index";
 import { AuthContext } from "../context/authentication";
 
@@ -11,7 +16,9 @@ const Login = () => {
   const { TITLE } = APP_INFO;
   const { CreateAccount } = useContext(AuthContext);
 
-  const [username_check, setUsername_check] = useState(false);
+  const [username_check, setUsername_check] = useState<boolean>(false);
+  const [process, setProcess] = useState<boolean>(false);
+
   const [pass, setPass] = useState({
     password: "",
     confirmPassword: "",
@@ -42,6 +49,7 @@ const Login = () => {
       console.log("Fill All values");
       return;
     }
+    setProcess(true);
     const body = {
       first_name: first_ref!.current.value,
       last_name: last_ref!.current.value,
@@ -49,7 +57,10 @@ const Login = () => {
       username: username_ref!.current.value,
       password: pass?.password,
     };
-    CreateAccount(body);
+    const err = CreateAccount(body);
+    if (err) {
+      // setProcess(false);
+    }
   };
 
   return (
@@ -266,7 +277,9 @@ const Login = () => {
                         disabled={
                           (pass.password === pass.confirmPassword
                             ? false
-                            : true) || username_check
+                            : true) ||
+                          username_check ||
+                          process
                         }
                         className={`${
                           pass.password === pass.confirmPassword
@@ -275,7 +288,7 @@ const Login = () => {
                         } group relative w-64 lg:w-96 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
                       >
                         <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                          <LockSVG />
+                          {process === false ? <LockSVG /> : <ProcessCircle />}
                         </span>
                         <span>Create Account</span>
                       </button>

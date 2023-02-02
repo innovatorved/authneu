@@ -48,9 +48,11 @@ const AuthState = (props) => {
       setToken(data?.token);
       notify.success("Succesfully Login");
       router.push("/");
+      return null;
     } else if (err) {
       console.log(err?.message);
       notify.error(err?.message);
+      return err;
     }
   };
 
@@ -60,9 +62,11 @@ const AuthState = (props) => {
       console.log("Account Created Succesfully!");
       router.push("/login");
       notify.success("Account Created Succesfully!");
+      return null;
     } else if (err) {
       console.log(err?.message);
       notify.error(err?.message);
+      return err;
     }
   };
 

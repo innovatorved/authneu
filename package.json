@@ -23,6 +23,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@next/font": "^13.1.6",
     "@prisma/client": "4.9.0",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.0",

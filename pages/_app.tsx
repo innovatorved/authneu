@@ -9,10 +9,20 @@ import "../styles/index.css";
 import "../styles/notify.css";
 import "react-toastify/dist/ReactToastify.css";
 
+import { Arima_Madurai } from "@next/font/google";
+
+const inter = Arima_Madurai({
+  subsets: ["latin"],
+  variable: "--font-arime-madurai",
+  weight: "400",
+});
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthState>
-      <Component {...pageProps} />
+      <main className={`${inter.variable}`}>
+        <Component {...pageProps} />
+      </main>
       <ToastContainer />
     </AuthState>
   );

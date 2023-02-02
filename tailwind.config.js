@@ -21,7 +21,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        primary: [ 'Arima Madurai', 'cursive' ],
+        primary: [ 'var(--font-arime-madurai)', 'cursive' ],
       }
     },
   },

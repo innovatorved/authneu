@@ -15,28 +15,25 @@ export default function Header() {
   const { TITLE } = APP_INFO;
   const [toggle, setToggle] = useState(false);
   const { isAuthenticated, LogoutUser } = useContext(AuthContext);
-  {
-    /* 
-            p-2 lg:px-4 md:mx-2 text-white font-primary rounded bg-primary-300
-            p-2 lg:px-4 md:mx-2 text-secondary-300 font-primary rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300
-    */
-  }
+
   return (
     <nav className="py-2 md:py-4 bg-gray-100">
       <div className="container px-4 mx-auto md:flex md:items-center md:py-0 py-2">
         <div className="flex justify-between items-center">
           <Link
             href="/"
-            className="font-bold text-xl text-primary-300 font-primary flex items-center"
+            className="font-bold text-xl text-primary-300 flex items-center"
           >
-            <Image
-              className="pr-2"
-              src={NextImgLogo}
-              height={35}
-              width={35}
-              alt={`Logo | ${TITLE}`}
-            />
-            {TITLE}
+            <>
+              <Image
+                className="pr-2"
+                src={NextImgLogo}
+                height={35}
+                width={35}
+                alt={`Logo | ${TITLE}`}
+              />
+              <span className="font-primary">{TITLE}</span>
+            </>
           </Link>
           <button
             className="border border-solid border-secondary-300 px-3 py-1 rounded text-secondary-300 opacity-50 hover:opacity-75 md:hidden"
