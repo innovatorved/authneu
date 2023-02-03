@@ -21,7 +21,7 @@ const Login = () => {
   const { LoginToAccount } = useContext(AuthContext);
   const [process, setProcess] = useState<Boolean>(false);
 
-  const Submit = (e) => {
+  const Submit = async (e) => {
     e.preventDefault();
     setProcess(true);
     if (!(email_ref!.current.value && pass_ref!.current.value)) {
@@ -32,9 +32,11 @@ const Login = () => {
       email: email_ref!.current.value,
       password: pass_ref!.current.value,
     };
-    const err = LoginToAccount(body);
+    const err = await LoginToAccount(body);
     if (err) {
-      // setProcess(false);
+      setTimeout(() => {
+        setProcess(false);
+      }, 1000);
     }
   };
 

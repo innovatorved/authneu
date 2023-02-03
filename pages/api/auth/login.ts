@@ -23,7 +23,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
     if (!(email && password)) {
       res.status(400).json({
         success: false,
-        error: "Compulsory fields are not filled!",
+        message: "Compulsory fields are not filled!",
       });
       return;
     }
@@ -43,9 +43,9 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
     if (!isPasswordCorrect) {
-      res.status(402).json({
+      res.status(401).json({
         success: false,
-        error: "Password is not Correct",
+        message: "Password is not Correct",
       });
       return;
     }

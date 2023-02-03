@@ -11,6 +11,7 @@ import {
 } from "../assets/SVG/image";
 import { APP_INFO } from "../environments/index";
 import { AuthContext } from "../context/authentication";
+import notify from "../helpers/notify";
 
 const Login = () => {
   const { TITLE } = APP_INFO;
@@ -35,7 +36,7 @@ const Login = () => {
   const email_ref = useRef<HTMLInputElement>(null);
   const username_ref = useRef<HTMLInputElement>(null);
 
-  const Submit = (e) => {
+  const Submit = async (e) => {
     e.preventDefault();
     if (
       !(
@@ -47,6 +48,7 @@ const Login = () => {
       )
     ) {
       console.log("Fill All values");
+      notify.error("Fill All values");
       return;
     }
     setProcess(true);
@@ -57,9 +59,11 @@ const Login = () => {
       username: username_ref!.current.value,
       password: pass?.password,
     };
-    const err = CreateAccount(body);
+    const err = await CreateAccount(body);
     if (err) {
-      // setProcess(false);
+      setTimeout(() => {
+        setProcess(false);
+      }, 1000);
     }
   };
 
