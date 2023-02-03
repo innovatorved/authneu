@@ -6,7 +6,7 @@ import AuthState from "../context/authentication";
 import { ToastContainer } from "react-toastify";
 
 import { Arima_Madurai } from "@next/font/google";
-const inter = Arima_Madurai({
+const arima = Arima_Madurai({
   subsets: ["latin"],
   variable: "--font-arime-madurai",
   weight: "400",
@@ -14,15 +14,14 @@ const inter = Arima_Madurai({
 
 import "../styles/index.css";
 import "../styles/notify.css";
-import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthState>
-      <div className={`${inter.variable}`}>
+      <div className={`${arima.variable}`}>
         <Component {...pageProps} />
       </div>
-      <ToastContainer />
+      <ToastContainer className={arima.className} />
     </AuthState>
   );
 }

@@ -98,8 +98,8 @@ const Login = () => {
                     </h1>
                   </div>
                   <p className="mt-4 text-xs md:text-sm leading-5 text-secondary-300">
-                    Information about the section could go here and a brief
-                    description of how this might be used.
+                    Unlock Your Identity: Share Your Personal Information for a
+                    Better Experience.
                   </p>
                 </div>
                 <div>
@@ -193,8 +193,8 @@ const Login = () => {
                     </h1>
                   </div>
                   <p className="mt-4 text-xs md:text-sm leading-5 text-secondary-300">
-                    Information about the section could go here and a brief
-                    description of how this might be used.
+                    Protect What Matters Most: Ensure the Safety of Your
+                    Information with Us
                   </p>
                 </div>
                 <div>
@@ -270,7 +270,7 @@ const Login = () => {
                   </Link>
                 </div>
                 <div>
-                  <div className="md:flex items-center lg:ml-24 lg:mt-0 mt-4 mb-2">
+                  <div className="md:flex items-center lg:ml-20 lg:mt-0 mt-4 mb-2">
                     <div className="md:w-64 md:mt-0 mt-4">
                       <button
                         type="submit"
@@ -285,7 +285,7 @@ const Login = () => {
                           pass.password === pass.confirmPassword
                             ? "hover:bg-primary-300"
                             : ""
-                        } group relative w-64 lg:w-96 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+                        } group relative w-64 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
                       >
                         <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                           {process === false ? <LockSVG /> : <ProcessCircle />}
