@@ -4,6 +4,7 @@ import prisma from "../../../lib/prisma";
 import jwt from "jsonwebtoken";
 
 import { env } from "../../../environments/index";
+import { verifyJWTandCheckUser } from "../../../utils/userFromJWT";
 
 const { JWT_KEY } = env;
 
@@ -17,38 +18,22 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const { token } = _req.headers;
-    const data = jwt.verify(token, JWT_KEY);
-    if (data) {
-      const user = await prisma.user.findUnique({
-        where: {
-          id: data.id,
-        },
-        select: {
-          id: true,
-          first_name: true,
-          last_name: true,
-          email: true,
-          username: true,
-        },
-      });
-      if (user === null) {
-        res.status(401).json({
-          success: false,
-          message: "User not available",
-        });
-        return;
-      }
-
-      res.status(202).json({
-        success: true,
-        data: user,
-      });
-    } else {
+    if (!token) {
+      throw new Error("Token not available");
+    }
+    const [error, user] = await verifyJWTandCheckUser(token);
+    if (error) {
       res.status(401).json({
         success: false,
-        message: "Not find",
+        message: error,
       });
+      return;
     }
+
+    res.status(202).json({
+      success: true,
+      data: user,
+    });
   } catch (error) {
     res.status(401).json({
       success: false,

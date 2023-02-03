@@ -8,7 +8,7 @@
 
 .Toastify__toast-body {
   color: #22333b !important;
-  font-family: Arima Madurai, "cursive";
+  font-family: "var(--font-arime-madurai)", cursivet;
   background-color: white !important;
 }
 
