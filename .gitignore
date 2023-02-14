@@ -31,6 +31,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+#.env.production
+.env.production
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
